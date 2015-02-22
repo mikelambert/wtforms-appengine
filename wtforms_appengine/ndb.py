@@ -223,7 +223,7 @@ class ModelConverter(ModelConverterBase):
     +--------------------+-------------------+--------------+------------------+
     | LocalStructuredPro | None              | ndb.Model    | always skipped   |
     +--------------------+-------------------+--------------+------------------+
-    | JsonProperty       | TextField         | unicode      |                  |
+    | JsonProperty       | TextAreaField     | unicode      |                  |
     +--------------------+-------------------+--------------+------------------+
     | PickleProperty     | None              | bytedata     | always skipped   |
     +--------------------+-------------------+--------------+------------------+
@@ -278,32 +278,28 @@ class ModelConverter(ModelConverterBase):
 
         return f.DateTimeField(format='%H:%M:%S', **kwargs)
 
-    def convert_RepeatedProperty(self, model, prop, kwargs):
-        """Returns a form field for a ``ndb.ListProperty``."""
-        return None
-
     def convert_UserProperty(self, model, prop, kwargs):
         """Returns a form field for a ``ndb.UserProperty``."""
         return None
 
     def convert_StructuredProperty(self, model, prop, kwargs):
-        """Returns a form field for a ``ndb.ListProperty``."""
+        """Returns a form field for a ``ndb.StructuredProperty``."""
         return None
 
     def convert_LocalStructuredProperty(self, model, prop, kwargs):
-        """Returns a form field for a ``ndb.ListProperty``."""
+        """Returns a form field for a ``ndb.LocalStructuredProperty``."""
         return None
 
     def convert_JsonProperty(self, model, prop, kwargs):
-        """Returns a form field for a ``ndb.ListProperty``."""
-        return None
+        """Returns a form field for a ``ndb.JsonProperty``."""
+        return f.TextAreaField(kwargs)
 
     def convert_PickleProperty(self, model, prop, kwargs):
-        """Returns a form field for a ``ndb.ListProperty``."""
+        """Returns a form field for a ``ndb.PickleProperty``."""
         return None
 
     def convert_GenericProperty(self, model, prop, kwargs):
-        """Returns a form field for a ``ndb.ListProperty``."""
+        """Returns a form field for a ``ndb.GenericProperty``."""
         kwargs['validators'].append(validators.length(max=500))
         return get_TextField(kwargs)
 
