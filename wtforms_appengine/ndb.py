@@ -292,7 +292,7 @@ class ModelConverter(ModelConverterBase):
 
     def convert_JsonProperty(self, model, prop, kwargs):
         """Returns a form field for a ``ndb.JsonProperty``."""
-        return f.TextAreaField(kwargs)
+        return f.TextAreaField(**kwargs)
 
     def convert_PickleProperty(self, model, prop, kwargs):
         """Returns a form field for a ``ndb.PickleProperty``."""
