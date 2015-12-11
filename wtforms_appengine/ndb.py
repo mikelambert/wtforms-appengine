@@ -93,7 +93,7 @@ class:
 """
 from wtforms import Form, validators, fields as f
 from wtforms.compat import string_types
-from .fields import GeoPtPropertyField, KeyPropertyField, StringListPropertyField, IntegerListPropertyField
+from .fields import JsonPropertyField, GeoPtPropertyField, KeyPropertyField, StringListPropertyField, IntegerListPropertyField
 
 
 def get_TextField(kwargs):
@@ -223,7 +223,7 @@ class ModelConverter(ModelConverterBase):
     +--------------------+-------------------+--------------+------------------+
     | LocalStructuredPro | None              | ndb.Model    | always skipped   |
     +--------------------+-------------------+--------------+------------------+
-    | JsonProperty       | TextAreaField     | unicode      |                  |
+    | JsonProperty       | JsonPropertyField | datastucture |                  |
     +--------------------+-------------------+--------------+------------------+
     | PickleProperty     | None              | bytedata     | always skipped   |
     +--------------------+-------------------+--------------+------------------+
@@ -292,7 +292,7 @@ class ModelConverter(ModelConverterBase):
 
     def convert_JsonProperty(self, model, prop, kwargs):
         """Returns a form field for a ``ndb.JsonProperty``."""
-        return f.TextAreaField(**kwargs)
+        return JsonPropertyField(**kwargs)
 
     def convert_PickleProperty(self, model, prop, kwargs):
         """Returns a form field for a ``ndb.PickleProperty``."""
