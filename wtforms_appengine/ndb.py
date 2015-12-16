@@ -93,7 +93,7 @@ class:
 """
 from wtforms import Form, validators, fields as f
 from wtforms.compat import string_types
-from .fields import JsonPropertyField, GeoPtPropertyField, KeyPropertyField, StringListPropertyField, IntegerListPropertyField
+from .fields import GeoPtPropertyField, JsonPropertyField, KeyPropertyField, StringListPropertyField, IntegerListPropertyField
 
 
 def get_TextField(kwargs):
